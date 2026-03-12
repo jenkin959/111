@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>交易大佬观点追踪面板</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121933;
+      --panel-2: #182142;
+      --line: #2a3566;
+      --text: #e8ecff;
+      --muted: #9aa6d1;
+      --green: #22c55e;
+      --red: #ef4444;
+      --yellow: #f59e0b;
+      --blue: #60a5fa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(180deg, #08101f 0%, #0b1020 100%);
+      color: var(--text);
+    }
+    .container { max-width: 1560px; margin: 0 auto; padding: 24px; }
+    .header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+    .title h1 { margin: 0 0 8px; font-size: 28px; line-height: 1.2; }
+    .title p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+    .badge { padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,0.03); color: var(--muted); font-size: 12px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; margin: 20px 0 24px; }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid var(--line); border-radius: 18px; padding: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.22); }
+    .card .label { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+    .card .value { font-size: 28px; font-weight: 700; line-height: 1; }
+    .section { margin-top: 24px; }
+    .section h2 { margin: 0 0 12px; font-size: 20px; }
+    .section-note { color: var(--muted); font-size: 13px; margin-bottom: 12px; line-height: 1.6; }
+    .table-wrap { overflow: auto; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); }
+    table { width: 100%; border-collapse: collapse; min-width: 1100px; }
+    th, td { text-align: left; padding: 14px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); vertical-align: top; font-size: 13px; line-height: 1.6; }
+    th { color: var(--muted); font-weight: 600; background: rgba(255,255,255,0.02); position: sticky; top: 0; }
+    .stock-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .stock-card { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 18px; }
+    .stock-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+    .stock-meta h3 { margin: 0; font-size: 22px; line-height: 1.1; }
+    .stock-meta p { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+    .consensus { padding: 8px 12px; border-radius: 999px; font-weight: 700; font-size: 12px; white-space: nowrap; border: 1px solid transparent; }
+    .bullish { background: rgba(34, 197, 94, 0.12); color: #7ef0a4; border-color: rgba(34, 197, 94, 0.3); }
+    .bearish { background: rgba(239, 68, 68, 0.12); color: #ff9e9e; border-color: rgba(239, 68, 68, 0.3); }
+    .mixed { background: rgba(245, 158, 11, 0.12); color: #ffd68a; border-color: rgba(245, 158, 11, 0.3); }
+    .mini-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+    .mini { padding: 10px 12px; border-radius: 14px; background: var(--panel-2); border: 1px solid rgba(255,255,255,0.05); }
+    .mini .k { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .mini .v { font-size: 14px; font-weight: 700; line-height: 1.5; }
+    .pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 14px; }
+    .pill { padding: 5px 10px; background: rgba(96,165,250,0.12); color: #bdd8ff; border: 1px solid rgba(96,165,250,0.24); border-radius: 999px; font-size: 12px; }
+    .views { display: grid; gap: 10px; }
+    .view-item { border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 12px; background: rgba(255,255,255,0.02); }
+    .view-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+    .view-name { font-size: 14px; font-weight: 700; }
+    .view-tag { font-size: 12px; padding: 4px 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.1); }
+    .view-body { font-size: 13px; line-height: 1.8; color: #e3e9ff; }
+    .footer { margin-top: 24px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    @media (max-width: 1100px) {
+      .summary-grid, .stock-grid, .mini-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title">
+        <h1>交易大佬观点追踪面板</h1>
+        <p>按标的归类，保留每位大佬固定摘要：看空/看多、关键点位、其他重要信息。出现同标的重叠时，直接显示跨来源一致性。</p>
+        <div class="badge-row">
+          <div class="badge">已导入来源：头哥 / 小林 / 顺哥 / Lance</div>
+          <div class="badge">最新导入：Lance｜2026-03-12</div>
+          <div class="badge">当前已出现跨来源重叠标的：4</div>
+          <div class="badge">跨来源一致看多：2</div>
+          <div class="badge">跨来源条件/分歧：2</div>
+        </div>
+      </div>
+      <div class="card" style="min-width:240px;">
+        <div class="label">最后更新时间</div>
+        <div class="value" style="font-size:18px; line-height:1.4;">2026-03-12｜最新来源：Lance</div>
+      </div>
+    </div>
+
+    <div class="summary-grid">
+      <div class="card"><div class="label">跟踪标的数</div><div class="value">24</div></div>
+      <div class="card"><div class="label">来源数</div><div class="value">4</div></div>
+      <div class="card"><div class="label">跨来源重叠标的</div><div class="value">4</div></div>
+      <div class="card"><div class="label">跨来源一致看多</div><div class="value">2</div></div>
+      <div class="card"><div class="label">跨来源条件/分歧</div><div class="value">2</div></div>
+      <div class="card"><div class="label">单一来源标的</div><div class="value">20</div></div>
+    </div>
+
+    <div class="section">
+      <h2>跨来源重叠标的</h2>
+      <div class="section-note">当前跨来源重叠包括 ORCL、IBIT、COIN、SPX。这里优先显示多位大佬同时提及的标的，便于筛选真正有重叠信息的交易机会。</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>标的</th>
+              <th>类型</th>
+              <th>跨来源结论</th>
+              <th>一致度</th>
+              <th>其他重要信息</th>
+              <th>关键点位</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+      <tr>
+        <td>COIN</td>
+        <td>股票</td>
+        <td>跨来源偏多</td>
+        <td>中</td>
+        <td>顺哥：与 CRCL、IBIT、ETHA 一起被列为一直加仓的方向 ｜ Lance：当前还未加仓；倾向先往下；战争没有明显缓和；认为 Coin 仍有机会修复下方缺口</td>
+        <td>顺哥：未提供明确价位 ｜ Lance：183-196 补缺口；190 下方开始分批加；跌破 183 住手；观察 176 是否跌破</td>
+      </tr>
+    
+      <tr>
+        <td>IBIT</td>
+        <td>现货ETF</td>
+        <td>跨来源一致看多</td>
+        <td>高</td>
+        <td>头哥：个人账户轻微配置；属于试探性加仓 ｜ 顺哥：被列为一直加仓的方向</td>
+        <td>头哥：未提供明确点位 ｜ 顺哥：未提供明确价位</td>
+      </tr>
+    
+      <tr>
+        <td>ORCL</td>
+        <td>股票</td>
+        <td>跨来源一致看多</td>
+        <td>高</td>
+        <td>小林：明确执行建仓，不是口头观察 ｜ 顺哥：业绩不错；开始逼空；一部分套着仓位留到年底，等待战争结束再加仓</td>
+        <td>小林：161 挂单成交 ｜ 顺哥：130 大底；161 对 130 附近买入仓位盈利跑路；154 左右回调需要买；年底 200 以上；趋势看 210；盘后到 160 / 171</td>
+      </tr>
+    
+      <tr>
+        <td>SPX</td>
+        <td>指数</td>
+        <td>跨来源偏空</td>
+        <td>中</td>
+        <td>顺哥：明天可能逼空到 6860 压力附近后迎来下一波跌幅；这几天仍属于短炒；一两个月后会新高 ｜ Lance：当前波动较大，随时可能引发破位；战争没有明显缓和</td>
+        <td>顺哥：6550 短期底部；6500 应该支撑住；6860 压力；这个星期上面压力 6860，下面支撑 6550 ｜ Lance：跌破 6700 或突破 6850；个人倾向下方</td>
+      </tr>
+    
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>全部标的卡片</h2>
+      <div class="section-note">同一标的下，按来源展开。每位大佬固定为三项：方向、关键点位、其他重要信息。</div>
+      <div class="stock-grid">
+        
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>COIN</h3>
+            <p>Coinbase ｜ 股票</p>
+          </div>
+          <div class="consensus mixed">跨来源偏多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">2</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥：趋势 ｜ Lance：近端波动</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">顺哥：未提供明确价位 ｜ Lance：183-196 补缺口；190 下方开始分批加；跌破 183 住手；观察 176 是否跌破</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">股票</div><div class="pill">加仓</div><div class="pill">加密相关</div><div class="pill">缺口修复</div><div class="pill">条件式</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">顺哥</div>
+              <div class="view-tag bullish">看多 / 加仓</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多 / 加仓<br>
+              <strong>关键点位：</strong>未提供明确价位<br>
+              <strong>其他重要信息：</strong>与 CRCL、IBIT、ETHA 一起被列为一直加仓的方向
+            </div>
+          </div>
+        
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">Lance</div>
+              <div class="view-tag mixed">条件式偏空后做多</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>条件式偏空后做多<br>
+              <strong>关键点位：</strong>183-196 补缺口；190 下方开始分批加；跌破 183 住手；观察 176 是否跌破<br>
+              <strong>其他重要信息：</strong>当前还未加仓；倾向先往下；战争没有明显缓和；认为 Coin 仍有机会修复下方缺口
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>IBIT</h3>
+            <p>iShares Bitcoin Trust ETF ｜ 现货ETF</p>
+          </div>
+          <div class="consensus bullish">跨来源一致看多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">2</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">高</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">头哥：短线观察 ｜ 顺哥：趋势</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">头哥：未提供明确点位 ｜ 顺哥：未提供明确价位</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">BTC</div><div class="pill">现货ETF</div><div class="pill">轻仓</div><div class="pill">加仓</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">头哥</div>
+              <div class="view-tag bullish">轻仓看多</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>轻仓看多<br>
+              <strong>关键点位：</strong>未提供明确点位<br>
+              <strong>其他重要信息：</strong>个人账户轻微配置；属于试探性加仓
+            </div>
+          </div>
+        
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">顺哥</div>
+              <div class="view-tag bullish">看多 / 加仓</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多 / 加仓<br>
+              <strong>关键点位：</strong>未提供明确价位<br>
+              <strong>其他重要信息：</strong>被列为一直加仓的方向
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>ORCL</h3>
+            <p>Oracle ｜ 股票</p>
+          </div>
+          <div class="consensus bullish">跨来源一致看多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">2</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">高</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">小林：短线 ｜ 顺哥：短线到年底</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">小林：161 挂单成交 ｜ 顺哥：130 大底；161 对 130 附近买入仓位盈利跑路；154 左右回调需要买；年底 200 以上；趋势看 210；盘后到 160 / 171</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">股票</div><div class="pill">建仓</div><div class="pill">挂单成交</div><div class="pill">趋势</div><div class="pill">分批交易</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">小林</div>
+              <div class="view-tag bullish">看多 / 已进场</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多 / 已进场<br>
+              <strong>关键点位：</strong>161 挂单成交<br>
+              <strong>其他重要信息：</strong>明确执行建仓，不是口头观察
+            </div>
+          </div>
+        
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">顺哥</div>
+              <div class="view-tag bullish">看多趋势 / 部分止盈后继续看多</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多趋势 / 部分止盈后继续看多<br>
+              <strong>关键点位：</strong>130 大底；161 对 130 附近买入仓位盈利跑路；154 左右回调需要买；年底 200 以上；趋势看 210；盘后到 160 / 171<br>
+              <strong>其他重要信息：</strong>业绩不错；开始逼空；一部分套着仓位留到年底，等待战争结束再加仓
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>SPX</h3>
+            <p>S&amp;P 500 Index ｜ 指数</p>
+          </div>
+          <div class="consensus mixed">跨来源偏空</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">2</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥：本周到 1-2 个月 ｜ Lance：近端波动</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">顺哥：6550 短期底部；6500 应该支撑住；6860 压力；这个星期上面压力 6860，下面支撑 6550 ｜ Lance：跌破 6700 或突破 6850；个人倾向下方</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">指数</div><div class="pill">支撑压力</div><div class="pill">震荡</div><div class="pill">破位</div><div class="pill">短线偏空</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">顺哥</div>
+              <div class="view-tag mixed">短线震荡 / 中期偏多</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>短线震荡 / 中期偏多<br>
+              <strong>关键点位：</strong>6550 短期底部；6500 应该支撑住；6860 压力；这个星期上面压力 6860，下面支撑 6550<br>
+              <strong>其他重要信息：</strong>明天可能逼空到 6860 压力附近后迎来下一波跌幅；这几天仍属于短炒；一两个月后会新高
+            </div>
+          </div>
+        
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">Lance</div>
+              <div class="view-tag bearish">短线偏空</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>短线偏空<br>
+              <strong>关键点位：</strong>跌破 6700 或突破 6850；个人倾向下方<br>
+              <strong>其他重要信息：</strong>当前波动较大，随时可能引发破位；战争没有明显缓和
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>BLK</h3>
+            <p>BlackRock ｜ 股票 / 信贷产品风险观察</p>
+          </div>
+          <div class="consensus bearish">单一来源偏空</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">头哥：中期观察</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">头哥：未提供明确交易点位</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">资管</div><div class="pill">赎回限制</div><div class="pill">流动性</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">头哥</div>
+              <div class="view-tag bearish">偏空观察</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>偏空观察<br>
+              <strong>关键点位：</strong>未提供明确交易点位<br>
+              <strong>其他重要信息：</strong>旗下信贷产品已出现赎回限制
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>BTC</h3>
+            <p>Bitcoin ｜ 加密货币</p>
+          </div>
+          <div class="consensus bullish">单一来源看多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥：趋势</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">顺哥：未提供明确价位</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">加密货币</div><div class="pill">底部判断</div><div class="pill">趋势</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">顺哥</div>
+              <div class="view-tag bullish">看多 / 已到底</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多 / 已到底<br>
+              <strong>关键点位：</strong>未提供明确价位<br>
+              <strong>其他重要信息：</strong>一直提醒已经到底
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>BX</h3>
+            <p>Blackstone ｜ 股票 / 信贷产品风险观察</p>
+          </div>
+          <div class="consensus bearish">单一来源偏空</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">头哥：中期观察</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">头哥：未提供明确交易点位</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">资管</div><div class="pill">赎回限制</div><div class="pill">私募信贷</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">头哥</div>
+              <div class="view-tag bearish">偏空观察</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>偏空观察<br>
+              <strong>关键点位：</strong>未提供明确交易点位<br>
+              <strong>其他重要信息：</strong>旗下信贷产品已出现赎回限制
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>CRCL</h3>
+            <p>CRCL ｜ 股票</p>
+          </div>
+          <div class="consensus bullish">单一来源看多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥：趋势</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">顺哥：60 到 120；趋势可以回到 150；逢跌都建仓</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">股票</div><div class="pill">趋势</div><div class="pill">逢跌建仓</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">顺哥</div>
+              <div class="view-tag bullish">看多</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多<br>
+              <strong>关键点位：</strong>60 到 120；趋势可以回到 150；逢跌都建仓<br>
+              <strong>其他重要信息：</strong>是顺哥今年赚钱最多的一只股票
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>ETHA</h3>
+            <p>ETHA ｜ 现货ETF</p>
+          </div>
+          <div class="consensus bullish">单一来源看多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥：趋势</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">顺哥：未提供明确价位</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">ETH</div><div class="pill">现货ETF</div><div class="pill">加仓</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">顺哥</div>
+              <div class="view-tag bullish">看多 / 加仓</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多 / 加仓<br>
+              <strong>关键点位：</strong>未提供明确价位<br>
+              <strong>其他重要信息：</strong>被列为一直加仓的方向
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>EWY</h3>
+            <p>iShares MSCI South Korea ETF ｜ ETF</p>
+          </div>
+          <div class="consensus bullish">单一来源看多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">小林：短线到波段</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">小林：120-125 可以加仓</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">ETF</div><div class="pill">加仓区间</div><div class="pill">回落承接</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">小林</div>
+              <div class="view-tag bullish">看多 / 回落加仓</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多 / 回落加仓<br>
+              <strong>关键点位：</strong>120-125 可以加仓<br>
+              <strong>其他重要信息：</strong>给出了明确加仓区间
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>FIGR</h3>
+            <p>FIGR ｜ 股票</p>
+          </div>
+          <div class="consensus bullish">单一来源看多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">小林：短线</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">小林：38 少量加仓；盘中到过 37 但未看到</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">股票</div><div class="pill">加仓</div><div class="pill">轻仓</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">小林</div>
+              <div class="view-tag bullish">小量加仓</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>小量加仓<br>
+              <strong>关键点位：</strong>38 少量加仓；盘中到过 37 但未看到<br>
+              <strong>其他重要信息：</strong>属于轻仓补仓，不是大幅加码
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>GOEASY</h3>
+            <p>goeasy ｜ 风险观察</p>
+          </div>
+          <div class="consensus bearish">单一来源偏空</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">头哥：2026 年前瞻</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">头哥：2026 年贷款核销率预估 15%</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">贷款机构</div><div class="pill">信用风险</div><div class="pill">衰退信号</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">头哥</div>
+              <div class="view-tag bearish">看空警示</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看空警示<br>
+              <strong>关键点位：</strong>2026 年贷款核销率预估 15%<br>
+              <strong>其他重要信息：</strong>被视为经济衰退级别信号
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>GOOG</h3>
+            <p>Alphabet ｜ 股票</p>
+          </div>
+          <div class="consensus bullish">单一来源看多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥：波段</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">顺哥：300 以下依然是加仓点位</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">股票</div><div class="pill">加仓点位</div><div class="pill">回落买</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">顺哥</div>
+              <div class="view-tag bullish">看多 / 回落加仓</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多 / 回落加仓<br>
+              <strong>关键点位：</strong>300 以下依然是加仓点位<br>
+              <strong>其他重要信息：</strong>今天也不错；仍按回落建仓思路处理
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>IREN</h3>
+            <p>IREN ｜ 股票</p>
+          </div>
+          <div class="consensus bullish">单一来源看多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥：短线到波段</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">顺哥：未提供明确价位</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">股票</div><div class="pill">逢跌买</div><div class="pill">先锋股</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">顺哥</div>
+              <div class="view-tag bullish">看多 / 逢跌买</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多 / 逢跌买<br>
+              <strong>关键点位：</strong>未提供明确价位<br>
+              <strong>其他重要信息：</strong>被列为先锋股之一；今天不错；逢跌都买
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>JPM</h3>
+            <p>JPMorgan Chase ｜ 股票 / 风险信号源</p>
+          </div>
+          <div class="consensus bearish">单一来源偏空</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">头哥：中期观察</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">头哥：未提供明确交易点位</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">金融</div><div class="pill">私募信贷</div><div class="pill">杠杆收紧</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">头哥</div>
+              <div class="view-tag bearish">偏空观察</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>偏空观察<br>
+              <strong>关键点位：</strong>未提供明确交易点位<br>
+              <strong>其他重要信息：</strong>开始下调部分私募信贷资产尤其企业软件贷款抵押品估值；银行收紧融资杠杆
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>LLY</h3>
+            <p>Eli Lilly ｜ 股票</p>
+          </div>
+          <div class="consensus bearish">单一来源偏空</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">头哥：当日操作</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">头哥：未提供明确点位</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">股票</div><div class="pill">减仓</div><div class="pill">防守</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">头哥</div>
+              <div class="view-tag bearish">减持 / 偏空</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>减持 / 偏空<br>
+              <strong>关键点位：</strong>未提供明确点位<br>
+              <strong>其他重要信息：</strong>已减持礼来；体现防守操作
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>MSTR</h3>
+            <p>MicroStrategy ｜ 股票</p>
+          </div>
+          <div class="consensus bullish">单一来源看多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥：趋势</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">顺哥：未提供明确价位</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">股票</div><div class="pill">高风险</div><div class="pill">高回报</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">顺哥</div>
+              <div class="view-tag bullish">看多 / 高风险</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多 / 高风险<br>
+              <strong>关键点位：</strong>未提供明确价位<br>
+              <strong>其他重要信息：</strong>如果冒险高回报可以考虑
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>MU</h3>
+            <p>Micron ｜ 股票</p>
+          </div>
+          <div class="consensus bearish">单一来源偏空</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">小林：短线</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">小林：未提供明确价位</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">股票</div><div class="pill">减仓</div><div class="pill">利润兑现</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">小林</div>
+              <div class="view-tag bearish">减仓</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>减仓<br>
+              <strong>关键点位：</strong>未提供明确价位<br>
+              <strong>其他重要信息：</strong>上周捞的太多，今天开始减仓
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>NBIS</h3>
+            <p>NBIS ｜ 股票</p>
+          </div>
+          <div class="consensus bullish">单一来源看多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥：短线到波段</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">顺哥：113 是压力；逢跌都买</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">股票</div><div class="pill">逢跌买</div><div class="pill">压力位</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">顺哥</div>
+              <div class="view-tag bullish">看多 / 逢跌买</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多 / 逢跌买<br>
+              <strong>关键点位：</strong>113 是压力；逢跌都买<br>
+              <strong>其他重要信息：</strong>被列为先锋股之一；今天不错
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>ONDS</h3>
+            <p>ONDS ｜ 股票</p>
+          </div>
+          <div class="consensus mixed">存在分歧/条件</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">Lance：财报前</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">Lance：财报前若还能往 11-12 前进，则在 11-12 放出部分仓位</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">股票</div><div class="pill">财报前</div><div class="pill">减仓计划</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">Lance</div>
+              <div class="view-tag mixed">到位减仓 / 谨慎偏多</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>到位减仓 / 谨慎偏多<br>
+              <strong>关键点位：</strong>财报前若还能往 11-12 前进，则在 11-12 放出部分仓位<br>
+              <strong>其他重要信息：</strong>2X 要小心，别多买；属于财报前计划性减仓
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>PATH</h3>
+            <p>UiPath ｜ 股票</p>
+          </div>
+          <div class="consensus bullish">单一来源看多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">小林：财报窗口</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">小林：未提供明确价位</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">股票</div><div class="pill">季报</div><div class="pill">事件驱动</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">小林</div>
+              <div class="view-tag bullish">看多</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多<br>
+              <strong>关键点位：</strong>未提供明确价位<br>
+              <strong>其他重要信息：</strong>季报驱动，可以做多
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>SNDK</h3>
+            <p>SanDisk ｜ 股票</p>
+          </div>
+          <div class="consensus mixed">存在分歧/条件</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">小林：短线</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">小林：655 减仓一次；670 附近再减一次；其后不打算继续卖</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">股票</div><div class="pill">减仓</div><div class="pill">分批止盈</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">小林</div>
+              <div class="view-tag mixed">减仓但保留底仓</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>减仓但保留底仓<br>
+              <strong>关键点位：</strong>655 减仓一次；670 附近再减一次；其后不打算继续卖<br>
+              <strong>其他重要信息：</strong>上周捞的太多；当前以分批兑现利润为主
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>SPXL</h3>
+            <p>Direxion Daily S&amp;P 500 Bull 3X Shares ｜ 杠杆ETF</p>
+          </div>
+          <div class="consensus mixed">存在分歧/条件</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">头哥：短线</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">头哥：未给 SPXL 自身明确点位；联动 SPY 672 附近</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">杠杆ETF</div><div class="pill">仓位管理</div><div class="pill">短线</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">头哥</div>
+              <div class="view-tag mixed">条件式偏多</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>条件式偏多<br>
+              <strong>关键点位：</strong>未给 SPXL 自身明确点位；联动 SPY 672 附近<br>
+              <strong>其他重要信息：</strong>已部分止损；等待更优风险收益比重新配置
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      <div class="stock-card">
+        <div class="stock-head">
+          <div class="stock-meta">
+            <h3>SPY</h3>
+            <p>S&amp;P 500 ETF ｜ 指数ETF</p>
+          </div>
+          <div class="consensus bullish">单一来源看多</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+          <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+          <div class="mini"><div class="k">时间窗口</div><div class="v">头哥：2026-03-12 日内</div></div>
+          <div class="mini"><div class="k">关键点位</div><div class="v">头哥：672.2-681.68；678 最大痛点；672 附近计划做多</div></div>
+        </div>
+        <div class="pill-row"><div class="pill">指数ETF</div><div class="pill">模型信号</div><div class="pill">反弹交易</div></div>
+        <div class="views">
+          
+          <div class="view-item">
+            <div class="view-top">
+              <div class="view-name">头哥</div>
+              <div class="view-tag bullish">看多反弹</div>
+            </div>
+            <div class="view-body">
+              <strong>方向：</strong>看多反弹<br>
+              <strong>关键点位：</strong>672.2-681.68；678 最大痛点；672 附近计划做多<br>
+              <strong>其他重要信息：</strong>期权链背离消失；情绪中性；保守参数模型将正向情绪上调至 63%；缩量阴跌后观察反弹机会
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>全部观点总表</h2>
+      <div class="section-note">用于按标的横向追踪不同来源的观点变化。</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>标的</th>
+              <th>大佬</th>
+              <th>方向</th>
+              <th>跨来源状态</th>
+              <th>类型</th>
+              <th>关键点位</th>
+              <th>其他重要信息</th>
+              <th>时间窗口</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td>COIN</td>
+              <td>顺哥</td>
+              <td>看多 / 加仓</td>
+              <td>跨来源偏多</td>
+              <td>股票</td>
+              <td>未提供明确价位</td>
+              <td>与 CRCL、IBIT、ETHA 一起被列为一直加仓的方向</td>
+              <td>趋势</td>
+            </tr>
+            
+            <tr>
+              <td>COIN</td>
+              <td>Lance</td>
+              <td>条件式偏空后做多</td>
+              <td>跨来源偏多</td>
+              <td>股票</td>
+              <td>183-196 补缺口；190 下方开始分批加；跌破 183 住手；观察 176 是否跌破</td>
+              <td>当前还未加仓；倾向先往下；战争没有明显缓和；认为 Coin 仍有机会修复下方缺口</td>
+              <td>近端波动</td>
+            </tr>
+            
+            <tr>
+              <td>IBIT</td>
+              <td>头哥</td>
+              <td>轻仓看多</td>
+              <td>跨来源一致看多</td>
+              <td>现货ETF</td>
+              <td>未提供明确点位</td>
+              <td>个人账户轻微配置；属于试探性加仓</td>
+              <td>短线观察</td>
+            </tr>
+            
+            <tr>
+              <td>IBIT</td>
+              <td>顺哥</td>
+              <td>看多 / 加仓</td>
+              <td>跨来源一致看多</td>
+              <td>现货ETF</td>
+              <td>未提供明确价位</td>
+              <td>被列为一直加仓的方向</td>
+              <td>趋势</td>
+            </tr>
+            
+            <tr>
+              <td>ORCL</td>
+              <td>小林</td>
+              <td>看多 / 已进场</td>
+              <td>跨来源一致看多</td>
+              <td>股票</td>
+              <td>161 挂单成交</td>
+              <td>明确执行建仓，不是口头观察</td>
+              <td>短线</td>
+            </tr>
+            
+            <tr>
+              <td>ORCL</td>
+              <td>顺哥</td>
+              <td>看多趋势 / 部分止盈后继续看多</td>
+              <td>跨来源一致看多</td>
+              <td>股票</td>
+              <td>130 大底；161 对 130 附近买入仓位盈利跑路；154 左右回调需要买；年底 200 以上；趋势看 210；盘后到 160 / 171</td>
+              <td>业绩不错；开始逼空；一部分套着仓位留到年底，等待战争结束再加仓</td>
+              <td>短线到年底</td>
+            </tr>
+            
+            <tr>
+              <td>SPX</td>
+              <td>顺哥</td>
+              <td>短线震荡 / 中期偏多</td>
+              <td>跨来源偏空</td>
+              <td>指数</td>
+              <td>6550 短期底部；6500 应该支撑住；6860 压力；这个星期上面压力 6860，下面支撑 6550</td>
+              <td>明天可能逼空到 6860 压力附近后迎来下一波跌幅；这几天仍属于短炒；一两个月后会新高</td>
+              <td>本周到 1-2 个月</td>
+            </tr>
+            
+            <tr>
+              <td>SPX</td>
+              <td>Lance</td>
+              <td>短线偏空</td>
+              <td>跨来源偏空</td>
+              <td>指数</td>
+              <td>跌破 6700 或突破 6850；个人倾向下方</td>
+              <td>当前波动较大，随时可能引发破位；战争没有明显缓和</td>
+              <td>近端波动</td>
+            </tr>
+            
+            <tr>
+              <td>BLK</td>
+              <td>头哥</td>
+              <td>偏空观察</td>
+              <td>单一来源偏空</td>
+              <td>股票 / 信贷产品风险观察</td>
+              <td>未提供明确交易点位</td>
+              <td>旗下信贷产品已出现赎回限制</td>
+              <td>中期观察</td>
+            </tr>
+            
+            <tr>
+              <td>BTC</td>
+              <td>顺哥</td>
+              <td>看多 / 已到底</td>
+              <td>单一来源看多</td>
+              <td>加密货币</td>
+              <td>未提供明确价位</td>
+              <td>一直提醒已经到底</td>
+              <td>趋势</td>
+            </tr>
+            
+            <tr>
+              <td>BX</td>
+              <td>头哥</td>
+              <td>偏空观察</td>
+              <td>单一来源偏空</td>
+              <td>股票 / 信贷产品风险观察</td>
+              <td>未提供明确交易点位</td>
+              <td>旗下信贷产品已出现赎回限制</td>
+              <td>中期观察</td>
+            </tr>
+            
+            <tr>
+              <td>CRCL</td>
+              <td>顺哥</td>
+              <td>看多</td>
+              <td>单一来源看多</td>
+              <td>股票</td>
+              <td>60 到 120；趋势可以回到 150；逢跌都建仓</td>
+              <td>是顺哥今年赚钱最多的一只股票</td>
+              <td>趋势</td>
+            </tr>
+            
+            <tr>
+              <td>ETHA</td>
+              <td>顺哥</td>
+              <td>看多 / 加仓</td>
+              <td>单一来源看多</td>
+              <td>现货ETF</td>
+              <td>未提供明确价位</td>
+              <td>被列为一直加仓的方向</td>
+              <td>趋势</td>
+            </tr>
+            
+            <tr>
+              <td>EWY</td>
+              <td>小林</td>
+              <td>看多 / 回落加仓</td>
+              <td>单一来源看多</td>
+              <td>ETF</td>
+              <td>120-125 可以加仓</td>
+              <td>给出了明确加仓区间</td>
+              <td>短线到波段</td>
+            </tr>
+            
+            <tr>
+              <td>FIGR</td>
+              <td>小林</td>
+              <td>小量加仓</td>
+              <td>单一来源看多</td>
+              <td>股票</td>
+              <td>38 少量加仓；盘中到过 37 但未看到</td>
+              <td>属于轻仓补仓，不是大幅加码</td>
+              <td>短线</td>
+            </tr>
+            
+            <tr>
+              <td>GOEASY</td>
+              <td>头哥</td>
+              <td>看空警示</td>
+              <td>单一来源偏空</td>
+              <td>风险观察</td>
+              <td>2026 年贷款核销率预估 15%</td>
+              <td>被视为经济衰退级别信号</td>
+              <td>2026 年前瞻</td>
+            </tr>
+            
+            <tr>
+              <td>GOOG</td>
+              <td>顺哥</td>
+              <td>看多 / 回落加仓</td>
+              <td>单一来源看多</td>
+              <td>股票</td>
+              <td>300 以下依然是加仓点位</td>
+              <td>今天也不错；仍按回落建仓思路处理</td>
+              <td>波段</td>
+            </tr>
+            
+            <tr>
+              <td>IREN</td>
+              <td>顺哥</td>
+              <td>看多 / 逢跌买</td>
+              <td>单一来源看多</td>
+              <td>股票</td>
+              <td>未提供明确价位</td>
+              <td>被列为先锋股之一；今天不错；逢跌都买</td>
+              <td>短线到波段</td>
+            </tr>
+            
+            <tr>
+              <td>JPM</td>
+              <td>头哥</td>
+              <td>偏空观察</td>
+              <td>单一来源偏空</td>
+              <td>股票 / 风险信号源</td>
+              <td>未提供明确交易点位</td>
+              <td>开始下调部分私募信贷资产尤其企业软件贷款抵押品估值；银行收紧融资杠杆</td>
+              <td>中期观察</td>
+            </tr>
+            
+            <tr>
+              <td>LLY</td>
+              <td>头哥</td>
+              <td>减持 / 偏空</td>
+              <td>单一来源偏空</td>
+              <td>股票</td>
+              <td>未提供明确点位</td>
+              <td>已减持礼来；体现防守操作</td>
+              <td>当日操作</td>
+            </tr>
+            
+            <tr>
+              <td>MSTR</td>
+              <td>顺哥</td>
+              <td>看多 / 高风险</td>
+              <td>单一来源看多</td>
+              <td>股票</td>
+              <td>未提供明确价位</td>
+              <td>如果冒险高回报可以考虑</td>
+              <td>趋势</td>
+            </tr>
+            
+            <tr>
+              <td>MU</td>
+              <td>小林</td>
+              <td>减仓</td>
+              <td>单一来源偏空</td>
+              <td>股票</td>
+              <td>未提供明确价位</td>
+              <td>上周捞的太多，今天开始减仓</td>
+              <td>短线</td>
+            </tr>
+            
+            <tr>
+              <td>NBIS</td>
+              <td>顺哥</td>
+              <td>看多 / 逢跌买</td>
+              <td>单一来源看多</td>
+              <td>股票</td>
+              <td>113 是压力；逢跌都买</td>
+              <td>被列为先锋股之一；今天不错</td>
+              <td>短线到波段</td>
+            </tr>
+            
+            <tr>
+              <td>ONDS</td>
+              <td>Lance</td>
+              <td>到位减仓 / 谨慎偏多</td>
+              <td>存在分歧/条件</td>
+              <td>股票</td>
+              <td>财报前若还能往 11-12 前进，则在 11-12 放出部分仓位</td>
+              <td>2X 要小心，别多买；属于财报前计划性减仓</td>
+              <td>财报前</td>
+            </tr>
+            
+            <tr>
+              <td>PATH</td>
+              <td>小林</td>
+              <td>看多</td>
+              <td>单一来源看多</td>
+              <td>股票</td>
+              <td>未提供明确价位</td>
+              <td>季报驱动，可以做多</td>
+              <td>财报窗口</td>
+            </tr>
+            
+            <tr>
+              <td>SNDK</td>
+              <td>小林</td>
+              <td>减仓但保留底仓</td>
+              <td>存在分歧/条件</td>
+              <td>股票</td>
+              <td>655 减仓一次；670 附近再减一次；其后不打算继续卖</td>
+              <td>上周捞的太多；当前以分批兑现利润为主</td>
+              <td>短线</td>
+            </tr>
+            
+            <tr>
+              <td>SPXL</td>
+              <td>头哥</td>
+              <td>条件式偏多</td>
+              <td>存在分歧/条件</td>
+              <td>杠杆ETF</td>
+              <td>未给 SPXL 自身明确点位；联动 SPY 672 附近</td>
+              <td>已部分止损；等待更优风险收益比重新配置</td>
+              <td>短线</td>
+            </tr>
+            
+            <tr>
+              <td>SPY</td>
+              <td>头哥</td>
+              <td>看多反弹</td>
+              <td>单一来源看多</td>
+              <td>指数ETF</td>
+              <td>672.2-681.68；678 最大痛点；672 附近计划做多</td>
+              <td>期权链背离消失；情绪中性；保守参数模型将正向情绪上调至 63%；缩量阴跌后观察反弹机会</td>
+              <td>2026-03-12 日内</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="footer">
+      页面用途：连续接收实时观点，持续维护同一份网页；每次导入会保留旧观点，并标记同标的的新增来源、关键点位变化与跨来源一致性变化。
+    </div>
+  </div>
+</body>
+</html>
