@@ -12,420 +12,601 @@
 .consensus{padding:8px 12px;border-radius:999px;font-weight:700;font-size:12px;white-space:nowrap;border:1px solid transparent;} .bullish{background:rgba(34,197,94,0.12);color:#7ef0a4;border-color:rgba(34,197,94,0.3);} .bearish{background:rgba(239,68,68,0.12);color:#ff9e9e;border-color:rgba(239,68,68,0.3);} .mixed{background:rgba(245,158,11,0.12);color:#ffd68a;border-color:rgba(245,158,11,0.3);}
 .mini-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px;} .mini{padding:10px 12px;border-radius:14px;background:var(--panel-2);border:1px solid rgba(255,255,255,0.05);} .mini .k{font-size:11px;color:var(--muted);margin-bottom:4px;} .mini .v{font-size:14px;font-weight:700;line-height:1.5;}
 .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;} .pill{padding:5px 10px;background:rgba(96,165,250,0.12);color:#bdd8ff;border:1px solid rgba(96,165,250,0.24);border-radius:999px;font-size:12px;}
-.views{display:grid;gap:10px;} .view-item{border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:12px;background:rgba(255,255,255,0.02);} .view-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;} .view-name{font-size:14px;font-weight:700;} .view-tag{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,0.1);} .view-sub{color:var(--muted);font-size:12px;margin-bottom:8px;} .view-body{font-size:13px;line-height:1.8;color:#e3e9ff;} .footer{margin-top:24px;color:var(--muted);font-size:12px;line-height:1.7;}
+.views{display:grid;gap:10px;} .view-item{border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:12px;background:rgba(255,255,255,0.02);} .view-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;} .view-name{font-size:14px;font-weight:700;} .view-tag{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,0.1);} .view-sub{color:var(--muted);font-size:12px;margin-bottom:8px;} .view-body{font-size:13px;line-height:1.8;color:#e3e9ff;}
+.footer{margin-top:24px;color:var(--muted);font-size:12px;line-height:1.7;}
 @media (max-width:1100px){.summary-grid,.stock-grid,.mini-grid{grid-template-columns:1fr;}}
 </style></head><body><div class="container">
-<div class="header"><div class="title"><h1>交易大佬观点追踪面板</h1><p>内容中的时间表述已直接写为具体日期。</p>
-<div class="badge-row"><div class="badge">已导入来源：头哥 / 小林 / 顺哥 / Lance</div><div class="badge">最新更新时间：2026-03-12</div></div></div>
-<div class="card" style="min-width:260px;"><div class="label">最后更新时间</div><div class="value" style="font-size:18px; line-height:1.4;">2026-03-12</div></div></div>
-<div class="summary-grid"><div class="card"><div class="label">跟踪标的数</div><div class="value">24</div></div><div class="card"><div class="label">来源数</div><div class="value">4</div></div><div class="card"><div class="label">跨来源重叠标的</div><div class="value">4</div></div><div class="card"><div class="label">跨来源一致看多</div><div class="value">2</div></div><div class="card"><div class="label">跨来源条件/分歧</div><div class="value">2</div></div><div class="card"><div class="label">单一来源标的</div><div class="value">20</div></div></div>
-
-<div class="section"><h2>跨来源重叠标的</h2><div class="section-note">当前跨来源重叠包括 ORCL、IBIT、COIN、SPX。这里直接显示各来源记录日期。</div><div class="table-wrap"><table><thead><tr><th>标的</th><th>类型</th><th>跨来源结论</th><th>一致度</th><th>其他重要信息</th><th>关键点位</th></tr></thead><tbody><tr><td>COIN</td><td>股票</td><td>跨来源偏多</td><td>中</td><td>顺哥[2026-03-12]：与 CRCL、IBIT、ETHA 一起被列为一直加仓的方向 ｜ Lance[2026-03-12]：原文相对时间：当前时点。当前还未加仓；倾向先往下；战争没有明显缓和；认为 Coin 仍有机会修复下方缺口</td><td>顺哥[2026-03-12]：未提供明确价位 ｜ Lance[2026-03-12]：183-196 补缺口；190 下方开始分批加；跌破 183 住手；观察 176 是否跌破</td></tr><tr><td>IBIT</td><td>现货ETF</td><td>跨来源一致看多</td><td>高</td><td>头哥[2026-03-12]：原文相对时间：今日。个人账户轻微配置；属于试探性加仓 ｜ 顺哥[2026-03-12]：被列为一直加仓的方向</td><td>头哥[2026-03-12]：未提供明确点位 ｜ 顺哥[2026-03-12]：未提供明确价位</td></tr><tr><td>ORCL</td><td>股票</td><td>跨来源一致看多</td><td>高</td><td>小林[2026-03-12]：明确执行建仓，不是口头观察 ｜ 顺哥[2026-03-12]：业绩不错；开始逼空；一部分套着仓位留到年底前，等待战争结束再加仓</td><td>小林[2026-03-12]：161 挂单成交 ｜ 顺哥[2026-03-12]：130 大底；161 对 130 附近买入仓位盈利跑路；154 左右回调需要买；年底前看 200 以上；趋势看 210；盘后到 160 / 171</td></tr><tr><td>SPX</td><td>指数</td><td>跨来源偏空</td><td>中</td><td>顺哥[2026-03-12]：原文相对时间：明天，这几天，这个星期；仍属于短炒；1-2 个月后会新高 ｜ Lance[2026-03-12]：原文相对时间：现在/今天。当前波动较大，随时可能引发破位；战争没有明显缓和</td><td>顺哥[2026-03-12]：6550 短期底部；6500 应该支撑住；6860 压力；本周区间，压力 6860 / 支撑 6550；明天可能逼空到 6860 后再跌 ｜ Lance[2026-03-12]：跌破 6700 或突破 6850；个人倾向下方</td></tr></tbody></table></div></div>
-<div class="section"><h2>全部标的卡片</h2><div class="section-note">每位大佬条目均保留“记录日期”，内容内的时间表述直接写成具体日期。</div><div class="stock-grid">
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>COIN</h3><p>Coinbase ｜ 股票</p></div><div class="consensus mixed">跨来源偏多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">2</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：趋势 ｜ Lance[2026-03-12]：近端波动</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：未提供明确价位 ｜ Lance[2026-03-12]：183-196 补缺口；190 下方开始分批加；跌破 183 住手；观察 176 是否跌破</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">股票</div><div class="pill">加仓</div><div class="pill">加密相关</div><div class="pill">缺口修复</div><div class="pill">条件式</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 加仓</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多 / 加仓<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>与 CRCL、IBIT、ETHA 一起被列为一直加仓的方向</div>
+<div class="header"><div class="title"><h1>交易大佬观点追踪面板</h1><p>延续当前表格版式。人名后保留日期，内容里不再追加具体日期。</p><div class="badge-row"><div class="badge">已导入来源：头哥 / 小林 / 顺哥 / Lance</div><div class="badge">最新更新时间：2026-03-12</div></div></div><div class="card" style="min-width:260px;"><div class="label">最后更新时间</div><div class="value" style="font-size:18px; line-height:1.4;">2026-03-12</div></div></div>
+<div class="summary-grid"><div class="card"><div class="label">跟踪标的数</div><div class="value">31</div></div><div class="card"><div class="label">来源数</div><div class="value">4</div></div><div class="card"><div class="label">跨来源重叠标的</div><div class="value">5</div></div><div class="card"><div class="label">跨来源一致看多</div><div class="value">2</div></div><div class="card"><div class="label">跨来源条件/分歧</div><div class="value">3</div></div><div class="card"><div class="label">单一来源标的</div><div class="value">26</div></div></div>
+<div class="section"><h2>跨来源重叠标的</h2><div class="section-note">当前跨来源重叠包括 ORCL、IBIT、COIN、SPX、MU。这里直接显示各来源记录日期。</div><div class="table-wrap"><table><thead><tr><th>标的</th><th>类型</th><th>跨来源结论</th><th>一致度</th><th>其他重要信息</th><th>关键点位</th></tr></thead><tbody><tr><td>COIN</td><td>股票</td><td>跨来源偏多</td><td>中</td><td>顺哥[2026-03-12]：与 CRCL、IBIT、ETHA 一起被列为一直加仓的方向 ｜ Lance[2026-03-12]：当前还未加仓；倾向先往下；战争没有明显缓和；认为 Coin 仍有机会修复下方缺口</td><td>顺哥[2026-03-12]：未提供明确价位 ｜ Lance[2026-03-12]：183-196 补缺口；190 下方开始分批加；跌破 183 住手；观察 176 是否跌破</td></tr><tr><td>IBIT</td><td>现货ETF</td><td>跨来源一致看多</td><td>高</td><td>头哥[2026-03-12]：个人账户轻微配置；属于试探性加仓 ｜ 顺哥[2026-03-12]：被列为一直加仓的方向</td><td>头哥[2026-03-12]：未提供明确点位 ｜ 顺哥[2026-03-12]：未提供明确价位</td></tr><tr><td>MU</td><td>股票</td><td>跨来源分歧</td><td>中</td><td>小林[2026-03-12]：上周捞的太多，开始减仓 ｜ 顺哥[2026-03-12]：被列为 sell put 免费钱方向之一；现阶段只是保守做多</td><td>小林[2026-03-12]：420 以上减一次 ｜ 顺哥[2026-03-12]：330 是想买的价钱；今天做了一些 sell put</td></tr><tr><td>ORCL</td><td>股票</td><td>跨来源一致看多</td><td>高</td><td>小林[2026-03-12]：明确执行建仓，不是口头观察 ｜ 顺哥[2026-03-12]：业绩不错；开始逼空；一部分套着仓位留到年底前，等待战争结束再加仓</td><td>小林[2026-03-12]：161 挂单成交 ｜ 顺哥[2026-03-12]：130 大底；161 对 130 附近买入仓位盈利跑路；154 左右回调需要买；年底前看 200 以上；趋势看 210；盘后到 160 / 171</td></tr><tr><td>SPX</td><td>指数</td><td>跨来源偏空</td><td>中</td><td>顺哥[2026-03-12]：今天依然做 sell put 默默赚钱；大盘还没跌完，会反复震荡；油是唯一可靠指标，若继续涨则美股有压力；下周空单依然很多，现阶段只是保守做多；若跌破 6500 则停止交易等待右侧反转；一两个月后系统看会有暴力反弹 ｜ Lance[2026-03-12]：Hold 着 SQQQ 等周五；高 beta 情绪和资金流动都不佳</td><td>顺哥[2026-03-12]：6500 强支撑；明天大概率 6600 附近徘徊；若跌破 6500 不排除到 5980；四月到五月看 7000 / 7030 ｜ Lance[2026-03-12]：大盘正式破位；继续等周五</td></tr></tbody></table></div></div>
+<div class="section"><h2>全部标的卡片</h2><div class="section-note">人名后保留日期。内容里不再重复追加具体日期。</div><div class="stock-grid">
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>COIN</h3><p>Coinbase ｜ 股票</p></div><div class="consensus mixed">跨来源偏多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">2</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：趋势 ｜ Lance[2026-03-12]：近端波动</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：未提供明确价位 ｜ Lance[2026-03-12]：183-196 补缺口；190 下方开始分批加；跌破 183 住手；观察 176 是否跌破</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">加仓</div><div class="pill">加密相关</div><div class="pill">缺口修复</div><div class="pill">条件式</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 加仓</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多 / 加仓<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>与 CRCL、IBIT、ETHA 一起被列为一直加仓的方向</div>
+        </div>
+        
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">Lance</div><div class="view-tag mixed">条件式偏空后做多</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>条件式偏空后做多<br><strong>关键点位：</strong>183-196 补缺口；190 下方开始分批加；跌破 183 住手；观察 176 是否跌破<br><strong>其他重要信息：</strong>当前还未加仓；倾向先往下；战争没有明显缓和；认为 Coin 仍有机会修复下方缺口</div>
+        </div>
+        </div>
     </div>
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">Lance</div><div class="view-tag mixed">条件式偏空后做多</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>条件式偏空后做多<br><strong>关键点位：</strong>183-196 补缺口；190 下方开始分批加；跌破 183 住手；观察 176 是否跌破<br><strong>其他重要信息：</strong>原文相对时间：当前时点。当前还未加仓；倾向先往下；战争没有明显缓和；认为 Coin 仍有机会修复下方缺口</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>IBIT</h3><p>iShares Bitcoin Trust ETF ｜ 现货ETF</p></div><div class="consensus bullish">跨来源一致看多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">2</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">高</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：短线观察 ｜ 顺哥[2026-03-12]：趋势</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未提供明确点位 ｜ 顺哥[2026-03-12]：未提供明确价位</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">BTC</div><div class="pill">现货ETF</div><div class="pill">轻仓</div><div class="pill">加仓</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bullish">轻仓看多</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>轻仓看多<br><strong>关键点位：</strong>未提供明确点位<br><strong>其他重要信息：</strong>原文相对时间：今日。个人账户轻微配置；属于试探性加仓</div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>IBIT</h3><p>iShares Bitcoin Trust ETF ｜ 现货ETF</p></div><div class="consensus bullish">跨来源一致看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">2</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">高</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：短线观察 ｜ 顺哥[2026-03-12]：趋势</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未提供明确点位 ｜ 顺哥[2026-03-12]：未提供明确价位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">BTC</div><div class="pill">现货ETF</div><div class="pill">轻仓</div><div class="pill">加仓</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bullish">轻仓看多</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>轻仓看多<br><strong>关键点位：</strong>未提供明确点位<br><strong>其他重要信息：</strong>个人账户轻微配置；属于试探性加仓</div>
+        </div>
+        
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 加仓</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多 / 加仓<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>被列为一直加仓的方向</div>
+        </div>
+        </div>
     </div>
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 加仓</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多 / 加仓<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>被列为一直加仓的方向</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>ORCL</h3><p>Oracle ｜ 股票</p></div><div class="consensus bullish">跨来源一致看多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">2</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">高</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">小林[2026-03-12]：短线 ｜ 顺哥[2026-03-12]：短线到年底前</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">小林[2026-03-12]：161 挂单成交 ｜ 顺哥[2026-03-12]：130 大底；161 对 130 附近买入仓位盈利跑路；154 左右回调需要买；年底前看 200 以上；趋势看 210；盘后到 160 / 171</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">股票</div><div class="pill">建仓</div><div class="pill">挂单成交</div><div class="pill">趋势</div><div class="pill">分批交易</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">小林</div><div class="view-tag bullish">看多 / 已进场</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多 / 已进场<br><strong>关键点位：</strong>161 挂单成交<br><strong>其他重要信息：</strong>明确执行建仓，不是口头观察</div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>MU</h3><p>Micron ｜ 股票</p></div><div class="consensus mixed">跨来源分歧</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">2</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">小林[2026-03-12]：短线 ｜ 顺哥[2026-03-12]：短线</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">小林[2026-03-12]：420 以上减一次 ｜ 顺哥[2026-03-12]：330 是想买的价钱；今天做了一些 sell put</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">减仓</div><div class="pill">利润兑现</div><div class="pill">sell put</div><div class="pill">想买价</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">小林</div><div class="view-tag bearish">减仓</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>减仓<br><strong>关键点位：</strong>420 以上减一次<br><strong>其他重要信息：</strong>上周捞的太多，开始减仓</div>
+        </div>
+        
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">sell put / 保守看多</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>sell put / 保守看多<br><strong>关键点位：</strong>330 是想买的价钱；今天做了一些 sell put<br><strong>其他重要信息：</strong>被列为 sell put 免费钱方向之一；现阶段只是保守做多</div>
+        </div>
+        </div>
     </div>
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多趋势 / 部分止盈后继续看多</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多趋势 / 部分止盈后继续看多<br><strong>关键点位：</strong>130 大底；161 对 130 附近买入仓位盈利跑路；154 左右回调需要买；年底前看 200 以上；趋势看 210；盘后到 160 / 171<br><strong>其他重要信息：</strong>业绩不错；开始逼空；一部分套着仓位留到年底前，等待战争结束再加仓</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>SPX</h3><p>S&amp;P 500 Index ｜ 指数</p></div><div class="consensus mixed">跨来源偏空</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">2</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：本周到 1-2 个月 ｜ Lance[2026-03-12]：近端波动</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：6550 短期底部；6500 应该支撑住；6860 压力；本周区间，压力 6860 / 支撑 6550；明天可能逼空到 6860 后再跌 ｜ Lance[2026-03-12]：跌破 6700 或突破 6850；个人倾向下方</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">指数</div><div class="pill">支撑压力</div><div class="pill">震荡</div><div class="pill">破位</div><div class="pill">短线偏空</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag mixed">短线震荡 / 中期偏多</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>短线震荡 / 中期偏多<br><strong>关键点位：</strong>6550 短期底部；6500 应该支撑住；6860 压力；本周区间，压力 6860 / 支撑 6550；明天可能逼空到 6860 后再跌<br><strong>其他重要信息：</strong>原文相对时间：明天，这几天，这个星期；仍属于短炒；1-2 个月后会新高</div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>ORCL</h3><p>Oracle ｜ 股票</p></div><div class="consensus bullish">跨来源一致看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">2</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">高</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">小林[2026-03-12]：短线 ｜ 顺哥[2026-03-12]：短线到年底前</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">小林[2026-03-12]：161 挂单成交 ｜ 顺哥[2026-03-12]：130 大底；161 对 130 附近买入仓位盈利跑路；154 左右回调需要买；年底前看 200 以上；趋势看 210；盘后到 160 / 171</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">建仓</div><div class="pill">挂单成交</div><div class="pill">趋势</div><div class="pill">分批交易</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">小林</div><div class="view-tag bullish">看多 / 已进场</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多 / 已进场<br><strong>关键点位：</strong>161 挂单成交<br><strong>其他重要信息：</strong>明确执行建仓，不是口头观察</div>
+        </div>
+        
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多趋势 / 部分止盈后继续看多</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多趋势 / 部分止盈后继续看多<br><strong>关键点位：</strong>130 大底；161 对 130 附近买入仓位盈利跑路；154 左右回调需要买；年底前看 200 以上；趋势看 210；盘后到 160 / 171<br><strong>其他重要信息：</strong>业绩不错；开始逼空；一部分套着仓位留到年底前，等待战争结束再加仓</div>
+        </div>
+        </div>
     </div>
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">Lance</div><div class="view-tag bearish">短线偏空</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>短线偏空<br><strong>关键点位：</strong>跌破 6700 或突破 6850；个人倾向下方<br><strong>其他重要信息：</strong>原文相对时间：现在/今天。当前波动较大，随时可能引发破位；战争没有明显缓和</div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>SPX</h3><p>S&amp;P 500 Index ｜ 指数</p></div><div class="consensus mixed">跨来源偏空</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">2</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：明日到四五月 ｜ Lance[2026-03-12]：到周五</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：6500 强支撑；明天大概率 6600 附近徘徊；若跌破 6500 不排除到 5980；四月到五月看 7000 / 7030 ｜ Lance[2026-03-12]：大盘正式破位；继续等周五</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">指数</div><div class="pill">支撑压力</div><div class="pill">sell put</div><div class="pill">破位</div><div class="pill">短线偏空</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag mixed">短线震荡 / 中期偏多但警惕破位</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>短线震荡 / 中期偏多但警惕破位<br><strong>关键点位：</strong>6500 强支撑；明天大概率 6600 附近徘徊；若跌破 6500 不排除到 5980；四月到五月看 7000 / 7030<br><strong>其他重要信息：</strong>今天依然做 sell put 默默赚钱；大盘还没跌完，会反复震荡；油是唯一可靠指标，若继续涨则美股有压力；下周空单依然很多，现阶段只是保守做多；若跌破 6500 则停止交易等待右侧反转；一两个月后系统看会有暴力反弹</div>
+        </div>
+        
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">Lance</div><div class="view-tag bearish">短线偏空 / 持有反向</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>短线偏空 / 持有反向<br><strong>关键点位：</strong>大盘正式破位；继续等周五<br><strong>其他重要信息：</strong>Hold 着 SQQQ 等周五；高 beta 情绪和资金流动都不佳</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>ADBE</h3><p>Adobe ｜ 股票</p></div><div class="consensus bearish">单一来源偏空</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">Lance[2026-03-12]：中期观察</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">Lance[2026-03-12]：未提供明确交易点位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">财报</div><div class="pill">成长放缓</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">Lance</div><div class="view-tag bearish">不看好成长 / 价值中性</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>不看好成长 / 价值中性<br><strong>关键点位：</strong>未提供明确交易点位<br><strong>其他重要信息：</strong>财报带来短期反弹，但 5 年平均利润增速约 5.5%，低于行业平均；ARR 增速由 11.5% 放缓至 10.9%；AI 对库存照片业务的冲击和 CEO 更换带来不确定性；大企业客户与责任保险仍提供价值支撑</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>ADSK</h3><p>Autodesk ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：短线</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：240 是想买的价钱；今天做了一些 sell put</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">sell put</div><div class="pill">想买价</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">sell put / 保守看多</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>sell put / 保守看多<br><strong>关键点位：</strong>240 是想买的价钱；今天做了一些 sell put<br><strong>其他重要信息：</strong>被列为 sell put 免费钱方向之一</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>BLK</h3><p>BlackRock ｜ 股票 / 信贷产品风险观察</p></div><div class="consensus bearish">单一来源偏空</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：中期观察</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未提供明确交易点位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">资管</div><div class="pill">赎回限制</div><div class="pill">流动性</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bearish">偏空观察</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>偏空观察<br><strong>关键点位：</strong>未提供明确交易点位<br><strong>其他重要信息：</strong>旗下信贷产品已出现赎回限制</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>BTC</h3><p>Bitcoin ｜ 加密货币</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：趋势</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：未提供明确价位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">加密货币</div><div class="pill">底部判断</div><div class="pill">趋势</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 已到底</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多 / 已到底<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>一直提醒已经到底</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>BX</h3><p>Blackstone ｜ 股票 / 信贷产品风险观察</p></div><div class="consensus bearish">单一来源偏空</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：中期观察</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未提供明确交易点位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">资管</div><div class="pill">赎回限制</div><div class="pill">私募信贷</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bearish">偏空观察</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>偏空观察<br><strong>关键点位：</strong>未提供明确交易点位<br><strong>其他重要信息：</strong>旗下信贷产品已出现赎回限制</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>CRCL</h3><p>CRCL ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：趋势</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：60 到 120；趋势可以回到 150；逢跌都建仓</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">趋势</div><div class="pill">逢跌建仓</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多<br><strong>关键点位：</strong>60 到 120；趋势可以回到 150；逢跌都建仓<br><strong>其他重要信息：</strong>是顺哥今年赚钱最多的一只股票</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>ETHA</h3><p>ETHA ｜ 现货ETF</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：趋势</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：未提供明确价位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">ETH</div><div class="pill">现货ETF</div><div class="pill">加仓</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 加仓</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多 / 加仓<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>被列为一直加仓的方向</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>EWY</h3><p>iShares MSCI South Korea ETF ｜ ETF</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">小林[2026-03-12]：短线到波段</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">小林[2026-03-12]：120-125 可以加仓</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">ETF</div><div class="pill">加仓区间</div><div class="pill">回落承接</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">小林</div><div class="view-tag bullish">看多 / 回落加仓</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多 / 回落加仓<br><strong>关键点位：</strong>120-125 可以加仓<br><strong>其他重要信息：</strong>给出了明确加仓区间</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>FIGR</h3><p>FIGR ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">小林[2026-03-12]：短线</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">小林[2026-03-12]：38 少量加仓；盘中到过 37 但未看到</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">加仓</div><div class="pill">轻仓</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">小林</div><div class="view-tag bullish">小量加仓</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>小量加仓<br><strong>关键点位：</strong>38 少量加仓；盘中到过 37 但未看到<br><strong>其他重要信息：</strong>属于轻仓补仓，不是大幅加码</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>GOEASY</h3><p>goeasy ｜ 风险观察</p></div><div class="consensus bearish">单一来源偏空</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：2026 年前瞻</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：2026 年贷款核销率预估 15%</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">贷款机构</div><div class="pill">信用风险</div><div class="pill">衰退信号</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bearish">看空警示</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看空警示<br><strong>关键点位：</strong>2026 年贷款核销率预估 15%<br><strong>其他重要信息：</strong>被视为经济衰退级别信号</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>GOOG</h3><p>Alphabet ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：波段</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：300 以下依然是加仓点位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">加仓点位</div><div class="pill">回落买</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 回落加仓</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多 / 回落加仓<br><strong>关键点位：</strong>300 以下依然是加仓点位<br><strong>其他重要信息：</strong>今天表现不错；仍按回落建仓思路处理</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>IREN</h3><p>IREN ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：短线到波段</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：未提供明确价位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">逢跌买</div><div class="pill">先锋股</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 逢跌买</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多 / 逢跌买<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>被列为先锋股之一；今天表现不错；逢跌都买</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>JPM</h3><p>JPMorgan Chase ｜ 股票 / 风险信号源</p></div><div class="consensus bearish">单一来源偏空</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：中期观察</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未提供明确交易点位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">金融</div><div class="pill">私募信贷</div><div class="pill">杠杆收紧</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bearish">偏空观察</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>偏空观察<br><strong>关键点位：</strong>未提供明确交易点位<br><strong>其他重要信息：</strong>开始下调部分私募信贷资产尤其企业软件贷款抵押品估值；银行收紧融资杠杆</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>LLY</h3><p>Eli Lilly ｜ 股票</p></div><div class="consensus bearish">单一来源偏空</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：当日操作</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未提供明确点位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">减仓</div><div class="pill">防守</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bearish">减持 / 偏空</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>减持 / 偏空<br><strong>关键点位：</strong>未提供明确点位<br><strong>其他重要信息：</strong>已减持礼来；体现防守操作</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>MSTR</h3><p>MicroStrategy ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：趋势</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：未提供明确价位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">高风险</div><div class="pill">高回报</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 高风险</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多 / 高风险<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>如果冒险高回报可以考虑</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>NBIS</h3><p>NBIS ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：短线到波段</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：113 是压力；逢跌都买</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">逢跌买</div><div class="pill">压力位</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 逢跌买</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多 / 逢跌买<br><strong>关键点位：</strong>113 是压力；逢跌都买<br><strong>其他重要信息：</strong>被列为先锋股之一；今天表现不错</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>NVDA</h3><p>NVIDIA ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：短线到长期</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：压力 187.6-188；强确认区 193.8-197.6；支撑 181；趋势转弱位 174.6</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">均线粘合</div><div class="pill">突破观察</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bullish">长期看多 / 短线等突破</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>长期看多 / 短线等突破<br><strong>关键点位：</strong>压力 187.6-188；强确认区 193.8-197.6；支撑 181；趋势转弱位 174.6<br><strong>其他重要信息：</strong>5/10/20/30/60/120 日均线罕见粘合；当前缩量横盘整理，平均成本约 180；长期仍看好 AI 基建投入</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>ONDS</h3><p>ONDS ｜ 股票</p></div><div class="consensus mixed">存在分歧/条件</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">Lance[2026-03-12]：财报前</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">Lance[2026-03-12]：9-9.5 可加仓；若未跌到 9，不适合加仓；财报前若到 11-12 放部分仓位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">财报前</div><div class="pill">减仓计划</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">Lance</div><div class="view-tag mixed">谨慎偏多 / 未到位不加</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>谨慎偏多 / 未到位不加<br><strong>关键点位：</strong>9-9.5 可加仓；若未跌到 9，不适合加仓；财报前若到 11-12 放部分仓位<br><strong>其他重要信息：</strong>并购 Bird Aerosystems 后预计 2026Q1 普通股增加约 30%，稀释压力大；不利 3/25 财务前投资者情绪；盘前像已消化并购消息，但临近财报要小心先下挫；即使宣布和 PLTR 合作，涨幅也不大</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>OPEN</h3><p>Opendoor ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：中短期</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未提供明确点位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">已配置</div><div class="pill">地产逻辑</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bullish">看多 / 已配置</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多 / 已配置<br><strong>关键点位：</strong>未提供明确点位<br><strong>其他重要信息：</strong>已配置 OPEN；逻辑包括新 CEO 改革见效、房屋匹配算法获认可、新屋开工数据强、房屋价值修复需求、住房法案利好</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>PATH</h3><p>UiPath ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">小林[2026-03-12]：财报窗口</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">小林[2026-03-12]：未提供明确价位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">季报</div><div class="pill">事件驱动</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">小林</div><div class="view-tag bullish">看多</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>季报驱动，可以做多</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>RCL</h3><p>Royal Caribbean ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：短线</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：240-245 是想买的价钱；今天做了一些 sell put</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">sell put</div><div class="pill">想买价</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">sell put / 保守看多</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>sell put / 保守看多<br><strong>关键点位：</strong>240-245 是想买的价钱；今天做了一些 sell put<br><strong>其他重要信息：</strong>被列为 sell put 免费钱方向之一</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>SMCI</h3><p>Super Micro Computer ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：短线</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未提供明确点位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">盘中配置</div><div class="pill">短线</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bullish">盘中配置 / 偏多</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>盘中配置 / 偏多<br><strong>关键点位：</strong>未提供明确点位<br><strong>其他重要信息：</strong>个人账户盘中配置了 SMCI</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>SNDK</h3><p>SanDisk ｜ 股票</p></div><div class="consensus mixed">存在分歧/条件</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">小林[2026-03-12]：短线</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">小林[2026-03-12]：655 减仓一次；670 附近再减一次；其后不打算继续卖</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">股票</div><div class="pill">减仓</div><div class="pill">分批止盈</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">小林</div><div class="view-tag mixed">减仓但保留底仓</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>减仓但保留底仓<br><strong>关键点位：</strong>655 减仓一次；670 附近再减一次；其后不打算继续卖<br><strong>其他重要信息：</strong>上周捞的太多；当前以分批兑现利润为主</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>SPXL</h3><p>Direxion Daily S&amp;P 500 Bull 3X Shares ｜ 杠杆ETF</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：短线</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未给明确点位</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">杠杆ETF</div><div class="pill">盘中配置</div><div class="pill">短线</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bullish">盘中配置 / 偏多</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>盘中配置 / 偏多<br><strong>关键点位：</strong>未给明确点位<br><strong>其他重要信息：</strong>个人账户盘中配置了 SPXL；在大跌日逆向执行模型计划</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>SPY</h3><p>S&amp;P 500 ETF ｜ 指数ETF</p></div><div class="consensus bullish">单一来源看多</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：明日</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：明日预计 661.79-670.75；660 附近继续配置多头</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">指数ETF</div><div class="pill">模型信号</div><div class="pill">反弹交易</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bullish">看多反弹 / 逢低继续配多</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看多反弹 / 逢低继续配多<br><strong>关键点位：</strong>明日预计 661.79-670.75；660 附近继续配置多头<br><strong>其他重要信息：</strong>期权链出现 1 日和 5 日看涨背离；保守参数模型将正向情绪上调至 100%；市场极冰点时机构有暗中抄底信号</div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="stock-card">
+      <div class="stock-head"><div class="stock-meta"><h3>SQQQ</h3><p>ProShares UltraPro Short QQQ ｜ 反向ETF</p></div><div class="consensus bearish">单一来源偏空</div></div>
+      <div class="mini-grid">
+        <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
+        <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
+        <div class="mini"><div class="k">时间窗口</div><div class="v">Lance[2026-03-12]：到周五</div></div>
+        <div class="mini"><div class="k">关键点位</div><div class="v">Lance[2026-03-12]：持有到周五</div></div>
+      </div>
+      <div class="pill-row"><div class="pill">反向ETF</div><div class="pill">对冲</div><div class="pill">持有</div></div>
+      <div class="views">
+        <div class="view-item">
+          <div class="view-top"><div class="view-name">Lance</div><div class="view-tag bearish">看空对冲 / 持有</div></div>
+          <div class="view-sub">记录日期：2026-03-12</div>
+          <div class="view-body"><strong>方向：</strong>看空对冲 / 持有<br><strong>关键点位：</strong>持有到周五<br><strong>其他重要信息：</strong>大盘正式破位后继续持有 SQQQ</div>
+        </div>
+        </div>
+    </div>
     </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>BLK</h3><p>BlackRock ｜ 股票 / 信贷产品风险观察</p></div><div class="consensus bearish">单一来源偏空</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：中期观察</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未提供明确交易点位</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">资管</div><div class="pill">赎回限制</div><div class="pill">流动性</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bearish">偏空观察</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>偏空观察<br><strong>关键点位：</strong>未提供明确交易点位<br><strong>其他重要信息：</strong>旗下信贷产品已出现赎回限制</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>BTC</h3><p>Bitcoin ｜ 加密货币</p></div><div class="consensus bullish">单一来源看多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：趋势</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：未提供明确价位</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">加密货币</div><div class="pill">底部判断</div><div class="pill">趋势</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 已到底</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多 / 已到底<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>一直提醒已经到底</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>BX</h3><p>Blackstone ｜ 股票 / 信贷产品风险观察</p></div><div class="consensus bearish">单一来源偏空</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：中期观察</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未提供明确交易点位</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">资管</div><div class="pill">赎回限制</div><div class="pill">私募信贷</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bearish">偏空观察</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>偏空观察<br><strong>关键点位：</strong>未提供明确交易点位<br><strong>其他重要信息：</strong>旗下信贷产品已出现赎回限制</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>CRCL</h3><p>CRCL ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：趋势</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：60 到 120；趋势可以回到 150；逢跌都建仓</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">股票</div><div class="pill">趋势</div><div class="pill">逢跌建仓</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多<br><strong>关键点位：</strong>60 到 120；趋势可以回到 150；逢跌都建仓<br><strong>其他重要信息：</strong>是顺哥 2026 年赚钱最多的一只股票</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>ETHA</h3><p>ETHA ｜ 现货ETF</p></div><div class="consensus bullish">单一来源看多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：趋势</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：未提供明确价位</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">ETH</div><div class="pill">现货ETF</div><div class="pill">加仓</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 加仓</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多 / 加仓<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>被列为一直加仓的方向</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>EWY</h3><p>iShares MSCI South Korea ETF ｜ ETF</p></div><div class="consensus bullish">单一来源看多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">小林[2026-03-12]：短线到波段</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">小林[2026-03-12]：120-125 可以加仓</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">ETF</div><div class="pill">加仓区间</div><div class="pill">回落承接</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">小林</div><div class="view-tag bullish">看多 / 回落加仓</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多 / 回落加仓<br><strong>关键点位：</strong>120-125 可以加仓<br><strong>其他重要信息：</strong>给出了明确加仓区间</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>FIGR</h3><p>FIGR ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">小林[2026-03-12]：短线</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">小林[2026-03-12]：38 少量加仓；盘中到过 37 但未看到</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">股票</div><div class="pill">加仓</div><div class="pill">轻仓</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">小林</div><div class="view-tag bullish">小量加仓</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>小量加仓<br><strong>关键点位：</strong>38 少量加仓；盘中到过 37 但未看到<br><strong>其他重要信息：</strong>属于轻仓补仓，不是大幅加码</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>GOEASY</h3><p>goeasy ｜ 风险观察</p></div><div class="consensus bearish">单一来源偏空</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：2026 年前瞻</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：2026 年贷款核销率预估 15%</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">贷款机构</div><div class="pill">信用风险</div><div class="pill">衰退信号</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bearish">看空警示</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看空警示<br><strong>关键点位：</strong>2026 年贷款核销率预估 15%<br><strong>其他重要信息：</strong>被视为经济衰退级别信号</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>GOOG</h3><p>Alphabet ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：波段</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：300 以下依然是加仓点位</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">股票</div><div class="pill">加仓点位</div><div class="pill">回落买</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 回落加仓</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多 / 回落加仓<br><strong>关键点位：</strong>300 以下依然是加仓点位<br><strong>其他重要信息：</strong>今天表现不错；仍按回落建仓思路处理</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>IREN</h3><p>IREN ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：短线到波段</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：未提供明确价位</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">股票</div><div class="pill">逢跌买</div><div class="pill">先锋股</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 逢跌买</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多 / 逢跌买<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>被列为先锋股之一；今天表现不错；逢跌都买</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>JPM</h3><p>JPMorgan Chase ｜ 股票 / 风险信号源</p></div><div class="consensus bearish">单一来源偏空</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：中期观察</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未提供明确交易点位</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">金融</div><div class="pill">私募信贷</div><div class="pill">杠杆收紧</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bearish">偏空观察</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>偏空观察<br><strong>关键点位：</strong>未提供明确交易点位<br><strong>其他重要信息：</strong>开始下调部分私募信贷资产尤其企业软件贷款抵押品估值；银行收紧融资杠杆</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>LLY</h3><p>Eli Lilly ｜ 股票</p></div><div class="consensus bearish">单一来源偏空</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：当日操作</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未提供明确点位</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">股票</div><div class="pill">减仓</div><div class="pill">防守</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bearish">减持 / 偏空</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>减持 / 偏空<br><strong>关键点位：</strong>未提供明确点位<br><strong>其他重要信息：</strong>原文相对时间：今日。已减持礼来；体现防守操作</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>MSTR</h3><p>MicroStrategy ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：趋势</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：未提供明确价位</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">股票</div><div class="pill">高风险</div><div class="pill">高回报</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 高风险</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多 / 高风险<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>如果冒险高回报可以考虑</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>MU</h3><p>Micron ｜ 股票</p></div><div class="consensus bearish">单一来源偏空</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">小林[2026-03-12]：短线</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">小林[2026-03-12]：未提供明确价位</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">股票</div><div class="pill">减仓</div><div class="pill">利润兑现</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">小林</div><div class="view-tag bearish">减仓</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>减仓<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>原文相对时间：今天。上周捞的太多，开始减仓</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>NBIS</h3><p>NBIS ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">顺哥[2026-03-12]：短线到波段</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">顺哥[2026-03-12]：113 是压力；逢跌都买</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">股票</div><div class="pill">逢跌买</div><div class="pill">压力位</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">顺哥</div><div class="view-tag bullish">看多 / 逢跌买</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多 / 逢跌买<br><strong>关键点位：</strong>113 是压力；逢跌都买<br><strong>其他重要信息：</strong>被列为先锋股之一；今天表现不错</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>ONDS</h3><p>ONDS ｜ 股票</p></div><div class="consensus mixed">存在分歧/条件</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">Lance[2026-03-12]：财报前</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">Lance[2026-03-12]：财报前若还能往 11-12 前进，则在 11-12 放出部分仓位</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">股票</div><div class="pill">财报前</div><div class="pill">减仓计划</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">Lance</div><div class="view-tag mixed">到位减仓 / 谨慎偏多</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>到位减仓 / 谨慎偏多<br><strong>关键点位：</strong>财报前若还能往 11-12 前进，则在 11-12 放出部分仓位<br><strong>其他重要信息：</strong>2X 要小心，别多买；属于财报前计划性减仓</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>PATH</h3><p>UiPath ｜ 股票</p></div><div class="consensus bullish">单一来源看多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">小林[2026-03-12]：财报窗口</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">小林[2026-03-12]：未提供明确价位</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">股票</div><div class="pill">季报</div><div class="pill">事件驱动</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">小林</div><div class="view-tag bullish">看多</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多<br><strong>关键点位：</strong>未提供明确价位<br><strong>其他重要信息：</strong>季报驱动，可以做多</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>SNDK</h3><p>SanDisk ｜ 股票</p></div><div class="consensus mixed">存在分歧/条件</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">小林[2026-03-12]：短线</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">小林[2026-03-12]：655 减仓一次；670 附近再减一次；其后不打算继续卖</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">股票</div><div class="pill">减仓</div><div class="pill">分批止盈</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">小林</div><div class="view-tag mixed">减仓但保留底仓</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>减仓但保留底仓<br><strong>关键点位：</strong>655 减仓一次；670 附近再减一次；其后不打算继续卖<br><strong>其他重要信息：</strong>原文相对时间：今天。上周捞的太多；当前以分批兑现利润为主</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>SPXL</h3><p>Direxion Daily S&amp;P 500 Bull 3X Shares ｜ 杠杆ETF</p></div><div class="consensus mixed">存在分歧/条件</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">中</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：短线</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：未给 SPXL 自身明确点位；联动 SPY 672 附近</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">杠杆ETF</div><div class="pill">仓位管理</div><div class="pill">短线</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">头哥</div><div class="view-tag mixed">条件式偏多</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>条件式偏多<br><strong>关键点位：</strong>未给 SPXL 自身明确点位；联动 SPY 672 附近<br><strong>其他重要信息：</strong>原文相对时间：今日。已部分止损；等待更优风险收益比重新配置</div>
-    </div></div>
-  </div>
-  <div class="stock-card">
-   <div class="stock-head"><div class="stock-meta"><h3>SPY</h3><p>S&amp;P 500 ETF ｜ 指数ETF</p></div><div class="consensus bullish">单一来源看多</div></div>
-   <div class="mini-grid">
-    <div class="mini"><div class="k">来源数</div><div class="v">1</div></div>
-    <div class="mini"><div class="k">一致度</div><div class="v">低</div></div>
-    <div class="mini"><div class="k">时间窗口</div><div class="v">头哥[2026-03-12]：日内</div></div>
-    <div class="mini"><div class="k">关键点位</div><div class="v">头哥[2026-03-12]：672.2-681.68；678 最大痛点；672 附近计划做多</div></div>
-   </div>
-   <div class="pill-row"><div class="pill">指数ETF</div><div class="pill">模型信号</div><div class="pill">反弹交易</div></div>
-   <div class="views">
-    <div class="view-item">
-     <div class="view-top"><div class="view-name">头哥</div><div class="view-tag bullish">看多反弹</div></div>
-     <div class="view-sub">记录日期：2026-03-12</div>
-     <div class="view-body"><strong>方向：</strong>看多反弹<br><strong>关键点位：</strong>672.2-681.68；678 最大痛点；672 附近计划做多<br><strong>其他重要信息：</strong>原文相对时间：今日。期权链背离消失；情绪中性；保守参数模型将正向情绪上调至 63%；缩量阴跌后观察反弹机会</div>
-    </div></div>
-  </div></div></div>
-<div class="section"><h2>全部观点总表</h2><div class="section-note">总表新增“记录日期”列。这样同一标的跨天更新时，能直接看出哪个判断属于哪一天。</div><div class="table-wrap"><table><thead><tr><th>标的</th><th>大佬</th><th>记录日期</th><th>方向</th><th>跨来源状态</th><th>类型</th><th>关键点位</th><th>其他重要信息</th><th>时间窗口</th></tr></thead><tbody><tr><td>COIN</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 加仓</td><td>跨来源偏多</td><td>股票</td><td>未提供明确价位</td><td>与 CRCL、IBIT、ETHA 一起被列为一直加仓的方向</td><td>趋势</td></tr><tr><td>COIN</td><td>Lance</td><td>2026-03-12</td><td>条件式偏空后做多</td><td>跨来源偏多</td><td>股票</td><td>183-196 补缺口；190 下方开始分批加；跌破 183 住手；观察 176 是否跌破</td><td>原文相对时间：当前时点。当前还未加仓；倾向先往下；战争没有明显缓和；认为 Coin 仍有机会修复下方缺口</td><td>近端波动</td></tr><tr><td>IBIT</td><td>头哥</td><td>2026-03-12</td><td>轻仓看多</td><td>跨来源一致看多</td><td>现货ETF</td><td>未提供明确点位</td><td>原文相对时间：今日。个人账户轻微配置；属于试探性加仓</td><td>短线观察</td></tr><tr><td>IBIT</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 加仓</td><td>跨来源一致看多</td><td>现货ETF</td><td>未提供明确价位</td><td>被列为一直加仓的方向</td><td>趋势</td></tr><tr><td>ORCL</td><td>小林</td><td>2026-03-12</td><td>看多 / 已进场</td><td>跨来源一致看多</td><td>股票</td><td>161 挂单成交</td><td>明确执行建仓，不是口头观察</td><td>短线</td></tr><tr><td>ORCL</td><td>顺哥</td><td>2026-03-12</td><td>看多趋势 / 部分止盈后继续看多</td><td>跨来源一致看多</td><td>股票</td><td>130 大底；161 对 130 附近买入仓位盈利跑路；154 左右回调需要买；年底前看 200 以上；趋势看 210；盘后到 160 / 171</td><td>业绩不错；开始逼空；一部分套着仓位留到年底前，等待战争结束再加仓</td><td>短线到年底前</td></tr><tr><td>SPX</td><td>顺哥</td><td>2026-03-12</td><td>短线震荡 / 中期偏多</td><td>跨来源偏空</td><td>指数</td><td>6550 短期底部；6500 应该支撑住；6860 压力；本周区间，压力 6860 / 支撑 6550；明天可能逼空到 6860 后再跌</td><td>原文相对时间：明天，这几天，这个星期；仍属于短炒；1-2 个月后会新高</td><td>本周到 1-2 个月</td></tr><tr><td>SPX</td><td>Lance</td><td>2026-03-12</td><td>短线偏空</td><td>跨来源偏空</td><td>指数</td><td>跌破 6700 或突破 6850；个人倾向下方</td><td>原文相对时间：现在/今天。当前波动较大，随时可能引发破位；战争没有明显缓和</td><td>近端波动</td></tr><tr><td>BLK</td><td>头哥</td><td>2026-03-12</td><td>偏空观察</td><td>单一来源偏空</td><td>股票 / 信贷产品风险观察</td><td>未提供明确交易点位</td><td>旗下信贷产品已出现赎回限制</td><td>中期观察</td></tr><tr><td>BTC</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 已到底</td><td>单一来源看多</td><td>加密货币</td><td>未提供明确价位</td><td>一直提醒已经到底</td><td>趋势</td></tr><tr><td>BX</td><td>头哥</td><td>2026-03-12</td><td>偏空观察</td><td>单一来源偏空</td><td>股票 / 信贷产品风险观察</td><td>未提供明确交易点位</td><td>旗下信贷产品已出现赎回限制</td><td>中期观察</td></tr><tr><td>CRCL</td><td>顺哥</td><td>2026-03-12</td><td>看多</td><td>单一来源看多</td><td>股票</td><td>60 到 120；趋势可以回到 150；逢跌都建仓</td><td>是顺哥 2026 年赚钱最多的一只股票</td><td>趋势</td></tr><tr><td>ETHA</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 加仓</td><td>单一来源看多</td><td>现货ETF</td><td>未提供明确价位</td><td>被列为一直加仓的方向</td><td>趋势</td></tr><tr><td>EWY</td><td>小林</td><td>2026-03-12</td><td>看多 / 回落加仓</td><td>单一来源看多</td><td>ETF</td><td>120-125 可以加仓</td><td>给出了明确加仓区间</td><td>短线到波段</td></tr><tr><td>FIGR</td><td>小林</td><td>2026-03-12</td><td>小量加仓</td><td>单一来源看多</td><td>股票</td><td>38 少量加仓；盘中到过 37 但未看到</td><td>属于轻仓补仓，不是大幅加码</td><td>短线</td></tr><tr><td>GOEASY</td><td>头哥</td><td>2026-03-12</td><td>看空警示</td><td>单一来源偏空</td><td>风险观察</td><td>2026 年贷款核销率预估 15%</td><td>被视为经济衰退级别信号</td><td>2026 年前瞻</td></tr><tr><td>GOOG</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 回落加仓</td><td>单一来源看多</td><td>股票</td><td>300 以下依然是加仓点位</td><td>今天表现不错；仍按回落建仓思路处理</td><td>波段</td></tr><tr><td>IREN</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 逢跌买</td><td>单一来源看多</td><td>股票</td><td>未提供明确价位</td><td>被列为先锋股之一；今天表现不错；逢跌都买</td><td>短线到波段</td></tr><tr><td>JPM</td><td>头哥</td><td>2026-03-12</td><td>偏空观察</td><td>单一来源偏空</td><td>股票 / 风险信号源</td><td>未提供明确交易点位</td><td>开始下调部分私募信贷资产尤其企业软件贷款抵押品估值；银行收紧融资杠杆</td><td>中期观察</td></tr><tr><td>LLY</td><td>头哥</td><td>2026-03-12</td><td>减持 / 偏空</td><td>单一来源偏空</td><td>股票</td><td>未提供明确点位</td><td>原文相对时间：今日。已减持礼来；体现防守操作</td><td>当日操作</td></tr><tr><td>MSTR</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 高风险</td><td>单一来源看多</td><td>股票</td><td>未提供明确价位</td><td>如果冒险高回报可以考虑</td><td>趋势</td></tr><tr><td>MU</td><td>小林</td><td>2026-03-12</td><td>减仓</td><td>单一来源偏空</td><td>股票</td><td>未提供明确价位</td><td>原文相对时间：今天。上周捞的太多，开始减仓</td><td>短线</td></tr><tr><td>NBIS</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 逢跌买</td><td>单一来源看多</td><td>股票</td><td>113 是压力；逢跌都买</td><td>被列为先锋股之一；今天表现不错</td><td>短线到波段</td></tr><tr><td>ONDS</td><td>Lance</td><td>2026-03-12</td><td>到位减仓 / 谨慎偏多</td><td>存在分歧/条件</td><td>股票</td><td>财报前若还能往 11-12 前进，则在 11-12 放出部分仓位</td><td>2X 要小心，别多买；属于财报前计划性减仓</td><td>财报前</td></tr><tr><td>PATH</td><td>小林</td><td>2026-03-12</td><td>看多</td><td>单一来源看多</td><td>股票</td><td>未提供明确价位</td><td>季报驱动，可以做多</td><td>财报窗口</td></tr><tr><td>SNDK</td><td>小林</td><td>2026-03-12</td><td>减仓但保留底仓</td><td>存在分歧/条件</td><td>股票</td><td>655 减仓一次；670 附近再减一次；其后不打算继续卖</td><td>原文相对时间：今天。上周捞的太多；当前以分批兑现利润为主</td><td>短线</td></tr><tr><td>SPXL</td><td>头哥</td><td>2026-03-12</td><td>条件式偏多</td><td>存在分歧/条件</td><td>杠杆ETF</td><td>未给 SPXL 自身明确点位；联动 SPY 672 附近</td><td>原文相对时间：今日。已部分止损；等待更优风险收益比重新配置</td><td>短线</td></tr><tr><td>SPY</td><td>头哥</td><td>2026-03-12</td><td>看多反弹</td><td>单一来源看多</td><td>指数ETF</td><td>672.2-681.68；678 最大痛点；672 附近计划做多</td><td>原文相对时间：今日。期权链背离消失；情绪中性；保守参数模型将正向情绪上调至 63%；缩量阴跌后观察反弹机会</td><td>日内</td></tr></tbody></table></div></div>
-<div class="footer">页面用途：连续接收实时观点，持续维护同一份网页；每次导入会保留旧观点，并标记记录日期、同标的新增来源、关键点位变化与跨来源一致性变化。</div>
-</div></body></html>
+<div class="section"><h2>全部观点总表</h2><div class="section-note">用于按标的横向追踪不同来源的观点变化。</div><div class="table-wrap"><table><thead><tr><th>标的</th><th>大佬</th><th>记录日期</th><th>方向</th><th>跨来源状态</th><th>类型</th><th>关键点位</th><th>其他重要信息</th><th>时间窗口</th></tr></thead><tbody><tr><td>COIN</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 加仓</td><td>跨来源偏多</td><td>股票</td><td>未提供明确价位</td><td>与 CRCL、IBIT、ETHA 一起被列为一直加仓的方向</td><td>趋势</td></tr><tr><td>COIN</td><td>Lance</td><td>2026-03-12</td><td>条件式偏空后做多</td><td>跨来源偏多</td><td>股票</td><td>183-196 补缺口；190 下方开始分批加；跌破 183 住手；观察 176 是否跌破</td><td>当前还未加仓；倾向先往下；战争没有明显缓和；认为 Coin 仍有机会修复下方缺口</td><td>近端波动</td></tr><tr><td>IBIT</td><td>头哥</td><td>2026-03-12</td><td>轻仓看多</td><td>跨来源一致看多</td><td>现货ETF</td><td>未提供明确点位</td><td>个人账户轻微配置；属于试探性加仓</td><td>短线观察</td></tr><tr><td>IBIT</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 加仓</td><td>跨来源一致看多</td><td>现货ETF</td><td>未提供明确价位</td><td>被列为一直加仓的方向</td><td>趋势</td></tr><tr><td>MU</td><td>小林</td><td>2026-03-12</td><td>减仓</td><td>跨来源分歧</td><td>股票</td><td>420 以上减一次</td><td>上周捞的太多，开始减仓</td><td>短线</td></tr><tr><td>MU</td><td>顺哥</td><td>2026-03-12</td><td>sell put / 保守看多</td><td>跨来源分歧</td><td>股票</td><td>330 是想买的价钱；今天做了一些 sell put</td><td>被列为 sell put 免费钱方向之一；现阶段只是保守做多</td><td>短线</td></tr><tr><td>ORCL</td><td>小林</td><td>2026-03-12</td><td>看多 / 已进场</td><td>跨来源一致看多</td><td>股票</td><td>161 挂单成交</td><td>明确执行建仓，不是口头观察</td><td>短线</td></tr><tr><td>ORCL</td><td>顺哥</td><td>2026-03-12</td><td>看多趋势 / 部分止盈后继续看多</td><td>跨来源一致看多</td><td>股票</td><td>130 大底；161 对 130 附近买入仓位盈利跑路；154 左右回调需要买；年底前看 200 以上；趋势看 210；盘后到 160 / 171</td><td>业绩不错；开始逼空；一部分套着仓位留到年底前，等待战争结束再加仓</td><td>短线到年底前</td></tr><tr><td>SPX</td><td>顺哥</td><td>2026-03-12</td><td>短线震荡 / 中期偏多但警惕破位</td><td>跨来源偏空</td><td>指数</td><td>6500 强支撑；明天大概率 6600 附近徘徊；若跌破 6500 不排除到 5980；四月到五月看 7000 / 7030</td><td>今天依然做 sell put 默默赚钱；大盘还没跌完，会反复震荡；油是唯一可靠指标，若继续涨则美股有压力；下周空单依然很多，现阶段只是保守做多；若跌破 6500 则停止交易等待右侧反转；一两个月后系统看会有暴力反弹</td><td>明日到四五月</td></tr><tr><td>SPX</td><td>Lance</td><td>2026-03-12</td><td>短线偏空 / 持有反向</td><td>跨来源偏空</td><td>指数</td><td>大盘正式破位；继续等周五</td><td>Hold 着 SQQQ 等周五；高 beta 情绪和资金流动都不佳</td><td>到周五</td></tr><tr><td>ADBE</td><td>Lance</td><td>2026-03-12</td><td>不看好成长 / 价值中性</td><td>单一来源偏空</td><td>股票</td><td>未提供明确交易点位</td><td>财报带来短期反弹，但 5 年平均利润增速约 5.5%，低于行业平均；ARR 增速由 11.5% 放缓至 10.9%；AI 对库存照片业务的冲击和 CEO 更换带来不确定性；大企业客户与责任保险仍提供价值支撑</td><td>中期观察</td></tr><tr><td>ADSK</td><td>顺哥</td><td>2026-03-12</td><td>sell put / 保守看多</td><td>单一来源看多</td><td>股票</td><td>240 是想买的价钱；今天做了一些 sell put</td><td>被列为 sell put 免费钱方向之一</td><td>短线</td></tr><tr><td>BLK</td><td>头哥</td><td>2026-03-12</td><td>偏空观察</td><td>单一来源偏空</td><td>股票 / 信贷产品风险观察</td><td>未提供明确交易点位</td><td>旗下信贷产品已出现赎回限制</td><td>中期观察</td></tr><tr><td>BTC</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 已到底</td><td>单一来源看多</td><td>加密货币</td><td>未提供明确价位</td><td>一直提醒已经到底</td><td>趋势</td></tr><tr><td>BX</td><td>头哥</td><td>2026-03-12</td><td>偏空观察</td><td>单一来源偏空</td><td>股票 / 信贷产品风险观察</td><td>未提供明确交易点位</td><td>旗下信贷产品已出现赎回限制</td><td>中期观察</td></tr><tr><td>CRCL</td><td>顺哥</td><td>2026-03-12</td><td>看多</td><td>单一来源看多</td><td>股票</td><td>60 到 120；趋势可以回到 150；逢跌都建仓</td><td>是顺哥今年赚钱最多的一只股票</td><td>趋势</td></tr><tr><td>ETHA</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 加仓</td><td>单一来源看多</td><td>现货ETF</td><td>未提供明确价位</td><td>被列为一直加仓的方向</td><td>趋势</td></tr><tr><td>EWY</td><td>小林</td><td>2026-03-12</td><td>看多 / 回落加仓</td><td>单一来源看多</td><td>ETF</td><td>120-125 可以加仓</td><td>给出了明确加仓区间</td><td>短线到波段</td></tr><tr><td>FIGR</td><td>小林</td><td>2026-03-12</td><td>小量加仓</td><td>单一来源看多</td><td>股票</td><td>38 少量加仓；盘中到过 37 但未看到</td><td>属于轻仓补仓，不是大幅加码</td><td>短线</td></tr><tr><td>GOEASY</td><td>头哥</td><td>2026-03-12</td><td>看空警示</td><td>单一来源偏空</td><td>风险观察</td><td>2026 年贷款核销率预估 15%</td><td>被视为经济衰退级别信号</td><td>2026 年前瞻</td></tr><tr><td>GOOG</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 回落加仓</td><td>单一来源看多</td><td>股票</td><td>300 以下依然是加仓点位</td><td>今天表现不错；仍按回落建仓思路处理</td><td>波段</td></tr><tr><td>IREN</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 逢跌买</td><td>单一来源看多</td><td>股票</td><td>未提供明确价位</td><td>被列为先锋股之一；今天表现不错；逢跌都买</td><td>短线到波段</td></tr><tr><td>JPM</td><td>头哥</td><td>2026-03-12</td><td>偏空观察</td><td>单一来源偏空</td><td>股票 / 风险信号源</td><td>未提供明确交易点位</td><td>开始下调部分私募信贷资产尤其企业软件贷款抵押品估值；银行收紧融资杠杆</td><td>中期观察</td></tr><tr><td>LLY</td><td>头哥</td><td>2026-03-12</td><td>减持 / 偏空</td><td>单一来源偏空</td><td>股票</td><td>未提供明确点位</td><td>已减持礼来；体现防守操作</td><td>当日操作</td></tr><tr><td>MSTR</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 高风险</td><td>单一来源看多</td><td>股票</td><td>未提供明确价位</td><td>如果冒险高回报可以考虑</td><td>趋势</td></tr><tr><td>NBIS</td><td>顺哥</td><td>2026-03-12</td><td>看多 / 逢跌买</td><td>单一来源看多</td><td>股票</td><td>113 是压力；逢跌都买</td><td>被列为先锋股之一；今天表现不错</td><td>短线到波段</td></tr><tr><td>NVDA</td><td>头哥</td><td>2026-03-12</td><td>长期看多 / 短线等突破</td><td>单一来源看多</td><td>股票</td><td>压力 187.6-188；强确认区 193.8-197.6；支撑 181；趋势转弱位 174.6</td><td>5/10/20/30/60/120 日均线罕见粘合；当前缩量横盘整理，平均成本约 180；长期仍看好 AI 基建投入</td><td>短线到长期</td></tr><tr><td>ONDS</td><td>Lance</td><td>2026-03-12</td><td>谨慎偏多 / 未到位不加</td><td>存在分歧/条件</td><td>股票</td><td>9-9.5 可加仓；若未跌到 9，不适合加仓；财报前若到 11-12 放部分仓位</td><td>并购 Bird Aerosystems 后预计 2026Q1 普通股增加约 30%，稀释压力大；不利 3/25 财务前投资者情绪；盘前像已消化并购消息，但临近财报要小心先下挫；即使宣布和 PLTR 合作，涨幅也不大</td><td>财报前</td></tr><tr><td>OPEN</td><td>头哥</td><td>2026-03-12</td><td>看多 / 已配置</td><td>单一来源看多</td><td>股票</td><td>未提供明确点位</td><td>已配置 OPEN；逻辑包括新 CEO 改革见效、房屋匹配算法获认可、新屋开工数据强、房屋价值修复需求、住房法案利好</td><td>中短期</td></tr><tr><td>PATH</td><td>小林</td><td>2026-03-12</td><td>看多</td><td>单一来源看多</td><td>股票</td><td>未提供明确价位</td><td>季报驱动，可以做多</td><td>财报窗口</td></tr><tr><td>RCL</td><td>顺哥</td><td>2026-03-12</td><td>sell put / 保守看多</td><td>单一来源看多</td><td>股票</td><td>240-245 是想买的价钱；今天做了一些 sell put</td><td>被列为 sell put 免费钱方向之一</td><td>短线</td></tr><tr><td>SMCI</td><td>头哥</td><td>2026-03-12</td><td>盘中配置 / 偏多</td><td>单一来源看多</td><td>股票</td><td>未提供明确点位</td><td>个人账户盘中配置了 SMCI</td><td>短线</td></tr><tr><td>SNDK</td><td>小林</td><td>2026-03-12</td><td>减仓但保留底仓</td><td>存在分歧/条件</td><td>股票</td><td>655 减仓一次；670 附近再减一次；其后不打算继续卖</td><td>上周捞的太多；当前以分批兑现利润为主</td><td>短线</td></tr><tr><td>SPXL</td><td>头哥</td><td>2026-03-12</td><td>盘中配置 / 偏多</td><td>单一来源看多</td><td>杠杆ETF</td><td>未给明确点位</td><td>个人账户盘中配置了 SPXL；在大跌日逆向执行模型计划</td><td>短线</td></tr><tr><td>SPY</td><td>头哥</td><td>2026-03-12</td><td>看多反弹 / 逢低继续配多</td><td>单一来源看多</td><td>指数ETF</td><td>明日预计 661.79-670.75；660 附近继续配置多头</td><td>期权链出现 1 日和 5 日看涨背离；保守参数模型将正向情绪上调至 100%；市场极冰点时机构有暗中抄底信号</td><td>明日</td></tr><tr><td>SQQQ</td><td>Lance</td><td>2026-03-12</td><td>看空对冲 / 持有</td><td>单一来源偏空</td><td>反向ETF</td><td>持有到周五</td><td>大盘正式破位后继续持有 SQQQ</td><td>到周五</td></tr></tbody></table></div></div>
+<div class="footer">已更新顺哥的 SPX / RCL / ADSK / MU 观点，头哥的 NVDA / OPEN / SPY / SPXL / SMCI 观点，以及 Lance 的 ADBE / ONDS / SQQQ 观点。</div></div></body></html>
